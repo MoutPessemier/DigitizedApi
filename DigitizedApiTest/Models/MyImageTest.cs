@@ -13,24 +13,24 @@ namespace DigitizedApiTest.Models {
         private readonly double aperture = 2.8;
         private readonly string country = "France";
 
-        [Fact]
-        public void TestConstructor() {
+        //[Fact]
+        //public void TestConstructor() {
             //MyImage image = new MyImage(name,country,null);
             //Assert.Equal(name, image.Name);
             //Assert.Equal(iso, image.ISO);
             //Assert.Equal(shutterspeed, image.ShutterSpeed);
             //Assert.Equal(aperture, image.Aperture);
             //Assert.Equal(country, image.Country);
-        }
+        //}
 
-        [Theory]
-        [InlineData(null)]
-        [InlineData("")]
-        [InlineData("              ")]
-        [InlineData("\t\t\r\n")]
-        public void VerkeerdeNaamTest(string naam) {
-            Assert.Throws<ArgumentException>(() => new MyImage(naam,country,null));
-        }
+        //[Theory]
+        //[InlineData(null)]
+        //[InlineData("")]
+        //[InlineData("              ")]
+        //[InlineData("\t\t\r\n")]
+        //public void VerkeerdeNaamTest(string naam) {
+        //    Assert.Throws<ArgumentException>(() => new MyImage(naam,country,null));
+        //}
 
         //[Theory]
         //[InlineData(0,1)]

@@ -10,11 +10,13 @@ namespace DigitizedApi.Data {
         private readonly ApplicationDbContext _dbContext;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IImageRepository _imageRepository;
+        private readonly IVideoRepository _videoRepository;
 
-        public DataInitializer(ApplicationDbContext context, UserManager<IdentityUser> userManager, IImageRepository imageRepository) {
+        public DataInitializer(ApplicationDbContext context, UserManager<IdentityUser> userManager, IImageRepository imageRepository, IVideoRepository videoRepository) {
             _dbContext = context;
             _userManager = userManager;
             _imageRepository = imageRepository;
+            _videoRepository = videoRepository;
         }
 
         //public async Task InitializeData() {
@@ -57,9 +59,18 @@ namespace DigitizedApi.Data {
                 MyImage image10 = new MyImage("DisplayPic6", "ISO-6400", "1/1000 sec", "f/13", "France", Image.FromFile("DSC_5471.jpg"));
                 _imageRepository.Add(image10);
 
-
                 _imageRepository.SaveChanges();
 
+                MyVideo video1 = new MyVideo("https://www.youtube.com/watch?v=t7pY-PffCTo");
+                _videoRepository.Add(video1);
+
+                MyVideo video2 = new MyVideo("https://www.youtube.com/watch?v=T-9ZP7eT7oQ");
+                _videoRepository.Add(video2);
+
+                MyVideo video3 = new MyVideo("https://www.youtube.com/watch?v=Yeq9vAr037U");
+                _videoRepository.Add(video3);
+
+                _videoRepository.SaveChanges();
             }
         }
 

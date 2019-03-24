@@ -33,6 +33,7 @@ namespace DigitizedApi {
             services.AddScoped<DataInitializer>();
             services.AddScoped<IImageRepository, ImageRepository>();
             services.AddScoped<IVisitorRepository, VisitorRepository>();
+            services.AddScoped<IVideoRepository, VideoRepository>();
 
             services.AddOpenApiDocument(c => {
                 c.DocumentName = "apidocs";

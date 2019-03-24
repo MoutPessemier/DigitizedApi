@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using DigitizedApi.Models.Repositories;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DigitizedApi.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -41,7 +37,7 @@ namespace DigitizedApi.Controllers {
         /// Gets an image with the given id
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>The image</returns>
+        /// <returns>Returns the requested image or a NotFound</returns>
         [HttpGet("{id}")]
         public ActionResult<MyImage> GetImage(int id) {
             MyImage img = _imageRepository.GetById(id);
