@@ -64,7 +64,7 @@ namespace DigitizedApi.Models {
         public string Country { get; set; }
 
         public ICollection<LikedImage> Liked { get; private set; }
-        public IEnumerable<MyImage> LikedImages => Liked.Select(i => i.Image);
+        //public IEnumerable<MyImage> LikedImages => Liked.Select(i => i.Image);
         #endregion
 
         #region Constructor

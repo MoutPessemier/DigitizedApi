@@ -100,10 +100,10 @@ namespace DigitizedApi.Controllers {
         /// Gets the liked images from the logged in visitor
         /// </summary>
         /// <returns></returns>
-        [HttpGet("Liked")]
-        public IEnumerable<MyImage> GetLiked() {
-            Visitor visitor = _visitorRepository.GetBy(User.Identity.Name);
-            return visitor.LikedImages;
-        }
+        //[HttpGet("Liked")]
+        //public IEnumerable<MyImage> GetLiked() {
+        //    Visitor visitor = _visitorRepository.GetBy(User.Identity.Name);
+        //    return visitor.LikedImages;
+        //}
     }
 }
