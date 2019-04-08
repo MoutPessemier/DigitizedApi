@@ -6,7 +6,7 @@ namespace DigitizedApiTest.Models {
     public class VisitorTest {
         private readonly string name = "Mout Pessemier";
         private readonly string email = "moutpessemier@hotmail.com";
-        private readonly string phone = "+32479114479";
+        private readonly string phone = "32479114479";
         private readonly string country = "Belgium";
 
         [Fact]
@@ -60,8 +60,8 @@ namespace DigitizedApiTest.Models {
         [InlineData("")]
         [InlineData("\t \t")]
         [InlineData("           ")]
-        [InlineData("0479114478")]
-        [InlineData("03253710420")]
+        [InlineData("000479114478")]
+        [InlineData("0032537104")]
         public void WrongConstructorPhoneNumber(string phoneNumber) {
             Assert.Throws<ArgumentException>(() => new Visitor(name, email, phoneNumber, country));
         }

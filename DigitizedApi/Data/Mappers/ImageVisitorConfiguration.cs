@@ -8,9 +8,9 @@ namespace DigitizedApi.Data.Mappers {
         public void Configure(EntityTypeBuilder<LikedImage> builder) {
             builder.HasKey(i => new { i.ImageId, i.VisitorId });
 
-            //builder.HasOne(i => i.Visitor)
-            //    .WithMany(v => v.Liked)
-            //    .HasForeignKey(i => i.VisitorId);
+            builder.HasOne(i => i.Visitor)
+                .WithMany(v => v.Liked)
+                .HasForeignKey(i => i.VisitorId);
 
             builder.HasOne(i => i.Image)
                 .WithMany()

@@ -94,10 +94,10 @@ namespace DigitizedApi.Models {
             return Convert.ToBase64String(Ret);
         }
 
-        private double CalcFNumber(double apex) {
-            //return Math.Round(Math.Pow(2, apex / 2), 1);
-            return Math.Pow(2, apex / 2);
-        }
+        //private double CalcFNumber(double apex) {
+        //    //return Math.Round(Math.Pow(2, apex / 2), 1);
+        //    return Math.Pow(2, apex / 2);
+        //}
         #endregion
     }
 }

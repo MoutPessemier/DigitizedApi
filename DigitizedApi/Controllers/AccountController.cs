@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,7 +54,7 @@ namespace DigitizedApi.Controllers {
             //payload claims
             var claims = new[] {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Email), //subject claim
-                //new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)//extra (een voorbeeld van extra claims mee te geven)
+                new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)//extra (een voorbeeld van extra claims mee te geven)
             };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -71,6 +72,12 @@ namespace DigitizedApi.Controllers {
         public async Task<ActionResult<String>> Register(RegisterDTO model) {
             IdentityUser user = new IdentityUser { UserName = model.Email, Email = model.Email };
             Visitor visitor = new Visitor(model.FirstName + " " + model.LastName, model.Email, model.PhoneNumber, model.Country);
+
+            var visitorInDb = _visitorRepository.GetAll().FirstOrDefault(v => v.Email == visitor.Email);
+            if(visitorInDb != null) {
+                return BadRequest("User already in the database");
+            }
+
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded) {
                 _visitorRepository.AddVisitor(visitor);

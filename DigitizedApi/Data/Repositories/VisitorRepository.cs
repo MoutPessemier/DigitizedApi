@@ -1,6 +1,7 @@
 ﻿using DigitizedApi.Models;
 using DigitizedApi.Models.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 
 
@@ -16,6 +17,10 @@ namespace DigitizedApi.Data.Repositories {
 
         public void AddVisitor(Visitor visitor) {
             _visitors.Add(visitor);
+        }
+
+        public IEnumerable<Visitor> GetAll() {
+            return _visitors.OrderBy(v => v.Name).ToList();
         }
 
         public Visitor GetBy(string email) {

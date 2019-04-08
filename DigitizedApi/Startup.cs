@@ -76,8 +76,8 @@ namespace DigitizedApi {
 
             //change later to the origen of my site
             services.AddCors(options =>
-        options.AddPolicy("AllowAllOrigins", builder => builder.AllowAnyOrigin()
-    ));
+                options.AddPolicy("AllowAllOrigins", builder => builder.AllowAnyOrigin()
+            ));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

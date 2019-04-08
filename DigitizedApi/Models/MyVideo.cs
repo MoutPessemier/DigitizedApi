@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
 
@@ -20,10 +21,29 @@ namespace DigitizedApi.Models {
         #endregion
 
         #region Methods
-        private string makeEmbedded(string url) {
-            var uri = new Uri(url);
+        public string makeEmbedded(string url) {
+            if (string.IsNullOrEmpty(url) || string.IsNullOrWhiteSpace(url)) {
+                throw new ArgumentException("URL cannot be empty");
+            }
+            Uri uri;
+            try {
+                uri = new Uri(url);
+            } catch (UriFormatException ex) {
+                throw new ArgumentException(ex.Message);
+            } catch (ArgumentNullException ex) {
+                throw new ArgumentException(ex.Message);
+            }
 
-            var query = HttpUtility.ParseQueryString(uri.Query);
+            NameValueCollection query;
+
+            try {
+                query = HttpUtility.ParseQueryString(uri.Query);
+            } catch (UriFormatException ex) {
+                throw new ArgumentException(ex.Message);
+            } catch (ArgumentNullException ex) {
+                throw new ArgumentException(ex.Message);
+            }
+
 
             var videoId = string.Empty;
 
@@ -33,7 +53,7 @@ namespace DigitizedApi.Models {
                 videoId = uri.Segments.Last();
             }
 
-            return "https://www.youtube.com/embed/" + videoId;
+            return "https://" + uri.Host + "/embed/" + videoId;
         }
         #endregion
     }

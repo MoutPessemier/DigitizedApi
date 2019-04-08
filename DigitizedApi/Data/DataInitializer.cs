@@ -50,13 +50,13 @@ namespace DigitizedApi.Data {
                 MyImage image7 = new MyImage("DisplayPic3", "ISO-640", "1/800 sec", "f/4.5", "Belgium", Image.FromFile("DSC_3698c3.jpg"));
                 _imageRepository.Add(image7);
 
-                MyImage image8 = new MyImage("DisplayPic4", "ISO-1250", "1/500 sec", "f/16", "Belgium", Image.FromFile("DSC_5088c.jpg"));
+                MyImage image8 = new MyImage("DisplayPic4", "ISO-1250", "1/500 sec", "f/16", "Netherlands", Image.FromFile("DSC_5088c.jpg"));
                 _imageRepository.Add(image8);
 
                 MyImage image9 = new MyImage("DisplayPic5", "ISO-2500", "1/40 sec", "f/4.5", "Belgium", Image.FromFile("DSC_5340.jpg"));
                 _imageRepository.Add(image9);
 
-                MyImage image10 = new MyImage("DisplayPic6", "ISO-6400", "1/1000 sec", "f/13", "France", Image.FromFile("DSC_5471.jpg"));
+                MyImage image10 = new MyImage("DisplayPic6", "ISO-6400", "1/1000 sec", "f/13", "France", Image.FromFile("DSC_5471c2.jpg"));
                 _imageRepository.Add(image10);
 
                 _imageRepository.SaveChanges();
@@ -71,6 +71,8 @@ namespace DigitizedApi.Data {
                 _videoRepository.Add(video3);
 
                 _videoRepository.SaveChanges();
+
+
             }
         }
 

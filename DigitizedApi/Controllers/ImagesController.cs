@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using DigitizedApi.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Linq;
 
 namespace DigitizedApi.Controllers {
     [Route("api/[controller]")]
@@ -29,8 +30,13 @@ namespace DigitizedApi.Controllers {
         /// <returns>A list of all the images</returns>
         [HttpGet]
         [AllowAnonymous]
-        public IEnumerable<MyImage> GetImages() {
-            return _imageRepository.GetAll();
+        public IEnumerable<MyImage> GetImages(string name = null) {
+            if(name == null) {
+                return _imageRepository.GetAll();
+            } else {
+                return _imageRepository.GetAll().Where(img => img.Name.StartsWith(name, System.StringComparison.OrdinalIgnoreCase));
+            }
+            
         }
 
         /// <summary>
@@ -39,6 +45,7 @@ namespace DigitizedApi.Controllers {
         /// <param name="id"></param>
         /// <returns>Returns the requested image or a NotFound</returns>
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public ActionResult<MyImage> GetImage(int id) {
             MyImage img = _imageRepository.GetById(id);
             if (img == null) {
@@ -96,10 +103,10 @@ namespace DigitizedApi.Controllers {
         /// Gets the liked images from the logged in visitor
         /// </summary>
         /// <returns></returns>
-        //[HttpGet("Liked")]
-        //public IEnumerable<MyImage> GetLiked() {
-        //    Visitor visitor = _visitorRepository.GetBy(User.Identity.Name);
-        //    return visitor.LikedImages;
-        //}
+        [HttpGet("Liked")]
+        public IEnumerable<MyImage> GetLiked() {
+            Visitor visitor = _visitorRepository.GetBy(User.Identity.Name);
+            return visitor.LikedImages;
+        }
     }
 }

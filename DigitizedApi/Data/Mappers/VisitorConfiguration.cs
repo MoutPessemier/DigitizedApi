@@ -24,6 +24,7 @@ namespace DigitizedApi.Data.Mappers {
             builder.Property(v => v.Telephone)
                 .HasMaxLength(15)
                 .IsRequired(true);
+            builder.Ignore(v => v.LikedImages);
         }
     }
 }
