@@ -14,7 +14,7 @@ namespace DigitizedApiTest.Models {
         private readonly string shutterspeed = "1/2 sec";
         private readonly string aperture = "f/2.8";
         private readonly string country = "France";
-        private readonly Image image = Image.FromFile("D:/School/Webapplicaties IV/DigitizedApi/DigitizedApi/DigitizedApi/DSC_2544c2.jpg");
+        private readonly Image image = Image.FromFile("D:/School/Webapplicaties IV/DigitizedApi/DigitizedApi/DigitizedApi/Images/DSC_2544c2.jpg");
 
         [Fact]
         public void TestConstructor() {
