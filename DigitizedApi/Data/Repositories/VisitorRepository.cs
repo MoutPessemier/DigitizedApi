@@ -20,10 +20,10 @@ namespace DigitizedApi.Data.Repositories {
         }
 
         public IEnumerable<Visitor> GetAll() {
-            return _visitors.OrderBy(v => v.Name).ToList();
+            return _visitors.OrderBy(v => v.FirstName).ToList();
         }
 
-        public Visitor GetBy(string email) {
+        public Visitor GetById(string email) {
             return _visitors.Include(v => v.Liked).ThenInclude(v => v.Image).SingleOrDefault(v => v.Email == email);
         }
 

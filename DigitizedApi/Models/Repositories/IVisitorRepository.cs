@@ -2,10 +2,10 @@
 
 namespace DigitizedApi.Models.Repositories {
     public interface IVisitorRepository {
-        Visitor GetBy(string email);
+        IEnumerable<Visitor> GetAll();
+        Visitor GetById(string email);
         void AddVisitor(Visitor visitor);
         void SaveChanges();
 
-        IEnumerable<Visitor> GetAll();
     }
 }

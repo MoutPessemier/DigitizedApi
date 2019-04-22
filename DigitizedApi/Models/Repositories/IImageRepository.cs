@@ -5,8 +5,7 @@ namespace DigitizedApi.Models.Repositories {
         MyImage GetById(int id);
         IEnumerable<MyImage> GetAll();
         void Add(MyImage image);
-        void Delete(MyImage image);
-        void Update(MyImage image);
         void SaveChanges();
+        IEnumerable<Comment> GetComments(int id);
     }
 }

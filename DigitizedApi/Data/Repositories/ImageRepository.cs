@@ -19,24 +19,20 @@ namespace DigitizedApi.Data.Repositories {
             _images.Add(image);
         }
 
-        public void Delete(MyImage image) {
-            _images.Remove(image);
-        }
-
         public IEnumerable<MyImage> GetAll() {
-            return _images.OrderBy(i => i.Name).ToList();
+            return _images.Include(i => i.Comments).OrderBy(i => i.Name).ToList();
         }
 
         public MyImage GetById(int id) {
-            return _images.SingleOrDefault(i => i.Id == id);
+            return _images.Include(i => i.Comments).SingleOrDefault(i => i.Id == id);
+        }
+
+        public IEnumerable<Comment> GetComments(int id) {
+            return _images.Include(i => i.Comments).FirstOrDefault(i => i.Id == id).Comments.OrderBy(c => c.Date).ToList();
         }
 
         public void SaveChanges() {
             _context.SaveChanges();
-        }
-
-        public void Update(MyImage image) {
-            _images.Update(image);
         }
     }
 }

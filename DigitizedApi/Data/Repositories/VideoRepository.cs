@@ -19,10 +19,6 @@ namespace DigitizedApi.Data.Repositories {
             _videos.Add(video);
         }
 
-        public void Delete(MyVideo video) {
-            _videos.Remove(video);
-        }
-
         public IEnumerable<MyVideo> GetAll() {
             return _videos.OrderBy(v => v.Id).ToList();
         }
@@ -35,8 +31,5 @@ namespace DigitizedApi.Data.Repositories {
             _context.SaveChanges();
         }
 
-        public void Update(MyVideo video) {
-            _videos.Update(video);
-        }
     }
 }

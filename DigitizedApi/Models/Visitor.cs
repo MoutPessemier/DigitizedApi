@@ -7,22 +7,35 @@ namespace DigitizedApi.Models {
     public class Visitor {
 
         #region Fields
-        private string _name;
+        private string _firstName;
+        private string _lastName;
         private string _email;
         private string _telephone;
         #endregion
 
         #region Properties
         public int Id { get; set; }
-        public string Name {
+        public string FirstName {
             get {
-                return _name;
+                return _firstName;
             }
             set {
                 if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value)) {
                     throw new ArgumentException("Name can't be empty.");
                 }
-                _name = value;
+                _firstName = value;
+            }
+        }
+
+        public string LastName {
+            get {
+                return _lastName;
+            }
+            set {
+                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value)) {
+                    throw new ArgumentException("Name can't be empty.");
+                }
+                _lastName = value;
             }
         }
 
@@ -68,8 +81,9 @@ namespace DigitizedApi.Models {
         #endregion
 
         #region Constructor
-        public Visitor(string name, string email, string telephone, string country = null) {
-            Name = name;
+        public Visitor(string firstName, string lastName, string email, string telephone, string country = null) {
+            FirstName = firstName;
+            LastName = lastName;
             Email = email;
             Telephone = telephone;
             Country = country;

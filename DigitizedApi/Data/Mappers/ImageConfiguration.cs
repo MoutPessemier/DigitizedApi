@@ -17,7 +17,10 @@ namespace DigitizedApi.Data.Mappers {
                 .HasMaxLength(84)
                 .IsRequired(true);
 
-            builder.Property(i => i.Content)
+            //builder.Property(i => i.Content)
+            //    .IsRequired(true);
+
+            builder.Property(i => i.Path)
                 .IsRequired(true);
 
             builder.Property(i => i.Aperture)
@@ -28,6 +31,9 @@ namespace DigitizedApi.Data.Mappers {
 
             builder.Property(i => i.ShutterSpeed)
                 .IsRequired(true);
+
+            builder.HasMany(c => c.Comments)
+                .WithOne();
         }
     }
 }

@@ -9,6 +9,7 @@ namespace DigitizedApi.Data {
         public DbSet<MyImage> Images { get; set; }
         public DbSet<Visitor> Visitors { get; set; }
         public DbSet<MyVideo> Videos { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) {
@@ -20,6 +21,8 @@ namespace DigitizedApi.Data {
             builder.ApplyConfiguration(new VisitorConfiguration());
             builder.ApplyConfiguration(new ImageVisitorConfiguration());
             builder.ApplyConfiguration(new VideoConfiguration());
+            builder.ApplyConfiguration(new CommentConfiguration());
+            builder.ApplyConfiguration(new ContactMessageConfiguration());
         }
     }
 }

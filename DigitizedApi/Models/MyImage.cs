@@ -35,8 +35,10 @@ namespace DigitizedApi.Models {
         public string ShutterSpeed { get; set; }
         public string Aperture { get; set; }
         public string Country { get; set; }
-        public string Content { get; set; }
+        //public string Content { get; set; }
+        public string Path { get; set; }
         public int Likes { get; set; }
+        public ICollection<Comment> Comments { get; set; }
         #endregion
 
         #region Constructor
@@ -69,14 +71,48 @@ namespace DigitizedApi.Models {
         //    Content = ConvertImage(image);
         //}
 
-        public MyImage(string name, string iso, string shutter, string fnumber, string country, Image image) {
+        //public MyImage(string name, string iso, string shutter, string fnumber, string country, Image image) {
+        //    Name = name;
+        //    ISO = iso;
+        //    ShutterSpeed = shutter;
+        //    Aperture = fnumber;
+        //    Country = country;
+        //    Content = ConvertImage(image);
+        //    Likes = 0;
+        //    Comments = new List<Comment>();
+        //}
+
+        //public MyImage(string name, string iso, string shutter, string fnumber, string country, Image image, int likes) {
+        //    Name = name;
+        //    ISO = iso;
+        //    ShutterSpeed = shutter;
+        //    Aperture = fnumber;
+        //    Country = country;
+        //    Content = ConvertImage(image);
+        //    Likes = likes;
+        //    Comments = new List<Comment>();
+        //}
+
+        public MyImage(string name, string iso, string shutter, string fnumber, string country, string path) {
             Name = name;
             ISO = iso;
             ShutterSpeed = shutter;
             Aperture = fnumber;
             Country = country;
-            Content = ConvertImage(image);
+            Path = path;
             Likes = 0;
+            Comments = new List<Comment>();
+        }
+
+        public MyImage(string name, string iso, string shutter, string fnumber, string country, string path, int likes) {
+            Name = name;
+            ISO = iso;
+            ShutterSpeed = shutter;
+            Aperture = fnumber;
+            Country = country;
+            Path = path;
+            Likes = likes;
+            Comments = new List<Comment>();
         }
         #endregion
 
@@ -98,6 +134,9 @@ namespace DigitizedApi.Models {
         //    //return Math.Round(Math.Pow(2, apex / 2), 1);
         //    return Math.Pow(2, apex / 2);
         //}
+
+        public void AddComment(Comment comment) => Comments.Add(comment);
+        public Comment GetComment(int id) => Comments.FirstOrDefault(c => c.Id == id);
         #endregion
     }
 }

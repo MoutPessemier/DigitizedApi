@@ -18,10 +18,12 @@ namespace DigitizedApi.Controllers {
 
         private readonly IImageRepository _imageRepository;
         private readonly IVisitorRepository _visitorRepository;
+        private readonly ICommentRepository _commentRepository;
 
-        public ImagesController(IImageRepository imageRepository, IVisitorRepository visitorRepository) {
+        public ImagesController(IImageRepository imageRepository, IVisitorRepository visitorRepository, ICommentRepository commentRepository) {
             _imageRepository = imageRepository;
             _visitorRepository = visitorRepository;
+            _commentRepository = commentRepository;
         }
 
         /// <summary>
@@ -30,13 +32,8 @@ namespace DigitizedApi.Controllers {
         /// <returns>A list of all the images</returns>
         [HttpGet]
         [AllowAnonymous]
-        public IEnumerable<MyImage> GetImages(string name = null) {
-            if(name == null) {
-                return _imageRepository.GetAll();
-            } else {
-                return _imageRepository.GetAll().Where(img => img.Name.StartsWith(name, System.StringComparison.OrdinalIgnoreCase));
-            }
-            
+        public IEnumerable<MyImage> GetImages() {
+            return _imageRepository.GetAll();
         }
 
         /// <summary>
@@ -56,57 +53,137 @@ namespace DigitizedApi.Controllers {
         }
 
         /// <summary>
-        /// Adds an image
+        /// Gets the comments of the image with the given id
         /// </summary>
-        /// <param name="img"></param>
-        /// <returns>The added image</returns>
-        [HttpPost]
-        public ActionResult<MyImage> PostImage(MyImage img) {
-            _imageRepository.Add(img);
-            _imageRepository.SaveChanges();
-            return CreatedAtAction(nameof(GetImage), new { id = img.Id }, img);
+        /// <param name="id"></param>
+        /// <returns>A list of comments</returns>
+        [HttpGet("{id}/comments")]
+        public IEnumerable<Comment> GetCommentsFromImage(int id) {
+            return _imageRepository.GetComments(id);
         }
 
         /// <summary>
-        /// Modifies an image
+        /// Gets the comment with the given id from the image with the given id
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="img"></param>
-        /// <returns>The modified image</returns>
-        [HttpPut("{id}")]
-        public IActionResult PutImage(int id, MyImage img) {
-            if (id != img.Id) {
-                return BadRequest();
-            }
-            _imageRepository.Update(img);
-            _imageRepository.SaveChanges();
-            return CreatedAtAction(nameof(GetImage), new { id = img.Id }, img);
-        }
-
-        /// <summary>
-        /// Deletes an image
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>The deleted image</returns>
-        [HttpDelete("{id}")]
-        public ActionResult<MyImage> DeleteImage(int id) {
+        /// <param name="commentId"></param>
+        /// <returns>The requested comment or NotFound</returns>
+        [HttpGet("{id}/comments/{commentId}")]
+        public ActionResult<Comment> GetComment(int id, int commentId) {
             MyImage image = _imageRepository.GetById(id);
             if (image == null) {
                 return NotFound();
             }
-            _imageRepository.Delete(image);
-            _imageRepository.SaveChanges();
-            return image;
+            Comment comment = image.GetComment(commentId);
+            if (comment == null) {
+                return NotFound();
+            }
+            return comment;
         }
 
         /// <summary>
-        /// Gets the liked images from the logged in visitor
+        /// Adds a comment
         /// </summary>
-        /// <returns></returns>
-        [HttpGet("Liked")]
-        public IEnumerable<MyImage> GetLiked() {
-            Visitor visitor = _visitorRepository.GetBy(User.Identity.Name);
-            return visitor.LikedImages;
+        /// <param name="id"></param>
+        /// <param name="comment"></param>
+        /// <returns>The added comment</returns>
+        [HttpPost("{id}/comments")]
+        public ActionResult<Comment> PostComment(int id, Comment comment) {
+            MyImage image = _imageRepository.GetById(id);
+            if (image == null) {
+                return NotFound();
+            }
+            image.AddComment(comment);
+            _imageRepository.SaveChanges();
+            return CreatedAtAction(nameof(GetComment), new { id = comment.Id }, comment);
+        }
+
+        /// <summary>
+        /// Updates a comment
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="commentId"></param>
+        /// <param name="comment"></param>
+        /// <returns>The updated comment or BadRequest</returns>
+        [HttpPut("{id}/comments/{commentId}")]
+        public IActionResult PutComment(int id, int commentId, Comment comment) {
+            if (comment.Id != commentId) {
+                return BadRequest();
+            }
+            _commentRepository.Update(comment);
+            _commentRepository.SaveChanges();
+            return CreatedAtAction(nameof(GetComment), new { id = comment.Id }, comment);
+        }
+
+        /// <summary>
+        /// Deletes the comment with given id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="commentId"></param>
+        /// <returns>The deleted commen or NotFound</returns>
+        [HttpDelete("{id}/comments/{commentId}")]
+        public ActionResult<Comment> DeleteComment(int id, int commentId) {
+            Comment comment = _commentRepository.GetById(commentId);
+            if(comment == null) {
+                return NotFound();
+            }
+            _commentRepository.Delete(comment);
+            _commentRepository.SaveChanges();
+            return comment;
         }
     }
 }
+
+///// <summary>
+///// Adds an image
+///// </summary>
+///// <param name="img"></param>
+///// <returns>The added image</returns>
+//[HttpPost]
+//public ActionResult<MyImage> PostImage(MyImage img) {
+//    _imageRepository.Add(img);
+//    _imageRepository.SaveChanges();
+//    return CreatedAtAction(nameof(GetImage), new { id = img.Id }, img);
+//}
+
+///// <summary>
+///// Modifies an image
+///// </summary>
+///// <param name="id"></param>
+///// <param name="img"></param>
+///// <returns>The modified image</returns>
+//[HttpPut("{id}")]
+//public IActionResult PutImage(int id, MyImage img) {
+//    if (id != img.Id) {
+//        return BadRequest();
+//    }
+//    _imageRepository.Update(img);
+//    _imageRepository.SaveChanges();
+//    return CreatedAtAction(nameof(GetImage), new { id = img.Id }, img);
+//}
+
+///// <summary>
+///// Deletes an image
+///// </summary>
+///// <param name="id"></param>
+///// <returns>The deleted image</returns>
+//[HttpDelete("{id}")]
+//public ActionResult<MyImage> DeleteImage(int id) {
+//    MyImage image = _imageRepository.GetById(id);
+//    if (image == null) {
+//        return NotFound();
+//    }
+//    _imageRepository.Delete(image);
+//    _imageRepository.SaveChanges();
+//    return image;
+//}
+
+///// <summary>
+///// Gets the liked images from the logged in visitor
+///// </summary>
+///// <returns></returns>
+//[HttpGet("Liked")]
+//public IEnumerable<MyImage> GetLiked() {
+//    Visitor visitor = _visitorRepository.GetBy(User.Identity.Name);
+//    return visitor.LikedImages;
+//}

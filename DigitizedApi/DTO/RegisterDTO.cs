@@ -11,7 +11,6 @@ namespace DigitizedApi.DTO {
         public string LastName { get; set; }
 
         [Required]
-        //[StringLength(15)]
         public string PhoneNumber { get; set; }
 
         public string Country { get; set; }

@@ -13,7 +13,11 @@ namespace DigitizedApi.Data.Mappers {
 
             builder.HasKey(v => v.Id);
 
-            builder.Property(v => v.Name)
+            builder.Property(v => v.FirstName)
+                .HasMaxLength(50)
+                .IsRequired(true);
+
+            builder.Property(v => v.FirstName)
                 .HasMaxLength(50)
                 .IsRequired(true);
 
