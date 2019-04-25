@@ -71,7 +71,7 @@ namespace DigitizedApi.Controllers {
         [HttpPost("Register")]
         public async Task<ActionResult<String>> Register(RegisterDTO model) {
             IdentityUser user = new IdentityUser { UserName = model.Email, Email = model.Email };
-            Visitor visitor = new Visitor(model.FirstName + " " + model.LastName, model.Email, model.PhoneNumber, model.Country);
+            Visitor visitor = new Visitor(model.FirstName, model.LastName, model.Email, model.PhoneNumber, model.Country);
 
             var visitorInDb = _visitorRepository.GetAll().FirstOrDefault(v => v.Email == visitor.Email);
             if(visitorInDb != null) {

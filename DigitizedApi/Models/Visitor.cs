@@ -68,7 +68,7 @@ namespace DigitizedApi.Models {
                 Match match = regex.Match(value);
                 if (!match.Success) {
                     throw new ArgumentException("Telephone number doesn't have a correct format. " +
-                        "Please make sure you use an international phone number (+44791112345) and dont forget to add the +.");
+                        "Please make sure you use an international phone number (+44791112345)");
                 }
                 _telephone = value;
             }
