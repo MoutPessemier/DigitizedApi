@@ -34,9 +34,13 @@ namespace DigitizedApi.Controllers {
             MailAddress to = new MailAddress(Configuration["Mail:To"]);
             MailMessage mail = new MailMessage(from, to);
             mail.Subject = contactMessage.Topic;
-            mail.Body = contactMessage.Author + "-" + contactMessage.Date + " - " + contactMessage.Content;
+            mail.IsBodyHtml = true;
+            mail.Body = 
+                "<h3> From: "+ contactMessage.Author +"</h3>" +
+                "<h4>Date: " + contactMessage.Date + "</h4>" +
+                "<p>Message: " + contactMessage.Content + "<p>";
 
-            SmtpClient client = new SmtpClient("smtp-mail.outlook.com", 587);
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
             client.UseDefaultCredentials = false;
             client.Credentials = new NetworkCredential(Configuration["Mail:From"], Configuration["Mail:Password"]);
             client.EnableSsl = true;
