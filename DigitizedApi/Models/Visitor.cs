@@ -78,6 +78,7 @@ namespace DigitizedApi.Models {
 
         public ICollection<LikedImage> Liked { get; private set; }
         public IEnumerable<MyImage> LikedImages => Liked.Select(i => i.Image);
+        public IEnumerable<Comment> Comments { get; set; }
         #endregion
 
         #region Constructor

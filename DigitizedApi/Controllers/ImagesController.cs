@@ -58,6 +58,7 @@ namespace DigitizedApi.Controllers {
         /// <param name="id"></param>
         /// <returns>A list of comments</returns>
         [HttpGet("{id}/comments")]
+        [AllowAnonymous]
         public IEnumerable<Comment> GetCommentsFromImage(int id) {
             return _imageRepository.GetComments(id);
         }
@@ -107,9 +108,14 @@ namespace DigitizedApi.Controllers {
         /// <returns>The updated comment or BadRequest</returns>
         [HttpPut("{id}/comments/{commentId}")]
         public IActionResult PutComment(int id, int commentId, Comment comment) {
+            MyImage image = _imageRepository.GetById(id);
             if (comment.Id != commentId) {
                 return BadRequest();
             }
+            if(image == null) {
+                return BadRequest();
+            }
+            //image.Comments.Update(comment);
             _commentRepository.Update(comment);
             _commentRepository.SaveChanges();
             return CreatedAtAction(nameof(GetComment), new { id = comment.Id }, comment);
@@ -124,9 +130,11 @@ namespace DigitizedApi.Controllers {
         [HttpDelete("{id}/comments/{commentId}")]
         public ActionResult<Comment> DeleteComment(int id, int commentId) {
             Comment comment = _commentRepository.GetById(commentId);
-            if(comment == null) {
+            MyImage image = _imageRepository.GetById(id);
+            if(comment == null || image == null) {
                 return NotFound();
             }
+            image.Comments.Remove(comment);
             _commentRepository.Delete(comment);
             _commentRepository.SaveChanges();
             return comment;

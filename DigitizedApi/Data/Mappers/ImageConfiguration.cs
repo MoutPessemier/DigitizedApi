@@ -33,7 +33,8 @@ namespace DigitizedApi.Data.Mappers {
                 .IsRequired(true);
 
             builder.HasMany(c => c.Comments)
-                .WithOne();
+                .WithOne()
+                .HasForeignKey(c => c.MyImageId);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace DigitizedApi.Models {
         public string Content { get; set; }
         public DateTime Date { get; set; }
         public int MyImageId { get; set; }
+        public int VisitorId { get; set; }
         #endregion
 
         #region Constructors

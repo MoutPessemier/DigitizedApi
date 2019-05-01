@@ -29,6 +29,10 @@ namespace DigitizedApi.Data.Mappers {
                 .HasMaxLength(15)
                 .IsRequired(true);
             builder.Ignore(v => v.LikedImages);
+
+            builder.HasMany(c => c.Comments)
+                .WithOne()
+                .HasForeignKey(c => c.VisitorId);
         }
     }
 }
