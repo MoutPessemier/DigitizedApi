@@ -97,11 +97,38 @@ namespace DigitizedApi.Data {
                 _visitorRepository.AddVisitor(visitor1);
 
                 Visitor visitor2 = new Visitor("Leerkracht", "HoGent", "web4@hogent.be", "0032479111234","België");
-                await CreateUser("web4", "gelukkiggeennetbeans");
+                await CreateUser(visitor2.Email, "gelukkiggeennetbeans");
                 _visitorRepository.AddVisitor(visitor2);
 
-                _videoRepository.SaveChanges();
+                Visitor visitor3 = new Visitor("Nante","Vermeulen","nante.vermeulen@student.hogent.be","0032579845263","Belgium");
+                await CreateUser(visitor3.Email, "P@ssword1");
+                _visitorRepository.AddVisitor(visitor3);
 
+                Visitor visitor4 = new Visitor("Tom", "Clarys", "tom.clarys@student.hogent.be", "0032479547896", "Belgium");
+                await CreateUser(visitor4.Email, "P@ssword1");
+                _visitorRepository.AddVisitor(visitor4);
+
+                Visitor visitor5 = new Visitor("Jef", "Malfliet", "jef.malfliet@student.hogent.be", "0032479542031", "Belgium");
+                await CreateUser(visitor5.Email, "P@ssword1");
+                _visitorRepository.AddVisitor(visitor5);
+
+                Visitor visitor6 = new Visitor("Bram", "Vanoverbeke", "bram.vanoverbeke@student.hogent.be", "0032479102356", "Belgium");
+                await CreateUser(visitor6.Email, "P@ssword1");
+                _visitorRepository.AddVisitor(visitor6);
+
+                Visitor visitor7 = new Visitor("Robbe", "Van de Vyver", "robbe.vandevyver@student.hogent.be", "0032479115588", "Belgium");
+                await CreateUser(visitor7.Email, "P@ssword1");
+                _visitorRepository.AddVisitor(visitor7);
+
+                Visitor visitor8 = new Visitor("Indy", "Van Canegem", "indy.vancanegem@student.hogent.be", "0032479654710", "Belgium");
+                await CreateUser(visitor8.Email, "P@ssword1");
+                _visitorRepository.AddVisitor(visitor8);
+
+                Visitor visitor9 = new Visitor("Willem", "Hendrickx", "willem.hendrickx@student.hogent.be", "0032479205376", "Belgium");
+                await CreateUser(visitor9.Email, "P@ssword1");
+                _visitorRepository.AddVisitor(visitor9);
+
+                _videoRepository.SaveChanges();
 
             }
         }

@@ -25,8 +25,8 @@ namespace DigitizedApi.Controllers {
         /// <param name="contactMessage"></param>
         /// <returns>true or false, depending on the success of the sent mail</returns>
         [HttpPost]
-        public bool Send(ContactMessage contactMessage) {
-            return SendMail(contactMessage).Result;
+        public Task<bool> Send(ContactMessage contactMessage) {
+            return SendMail(contactMessage);
         }
 
         private async Task<bool> SendMail(ContactMessage contactMessage) {
@@ -35,8 +35,8 @@ namespace DigitizedApi.Controllers {
             MailMessage mail = new MailMessage(from, to);
             mail.Subject = contactMessage.Topic;
             mail.IsBodyHtml = true;
-            mail.Body = 
-                "<h3> From: "+ contactMessage.Author +"</h3>" +
+            mail.Body =
+                "<h3> From: " + contactMessage.Author + "</h3>" +
                 "<h4>Date: " + contactMessage.Date + "</h4>" +
                 "<p>Message: " + contactMessage.Content + "<p>";
 

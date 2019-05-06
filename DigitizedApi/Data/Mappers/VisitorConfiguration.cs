@@ -25,10 +25,11 @@ namespace DigitizedApi.Data.Mappers {
                 .HasMaxLength(70)
                 .IsRequired(true);
 
-            builder.Property(v => v.Telephone)
+            builder.Property(v => v.PhoneNumber)
                 .HasMaxLength(15)
                 .IsRequired(true);
-            builder.Ignore(v => v.LikedImages);
+
+            //builder.Ignore(v => v.LikedImages);
 
             builder.HasMany(c => c.Comments)
                 .WithOne()

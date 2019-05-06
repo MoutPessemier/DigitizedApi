@@ -41,10 +41,11 @@ namespace DigitizedApi.Controllers {
         public async Task<ActionResult<String>> CreateToken(LoginDTO model) {
             var user = await _userManager.FindByNameAsync(model.Email);
             if(user != null) {
+                var visitor = _visitorRepository.GetById(model.Email);
                 var result = await _singInManager.CheckPasswordSignInAsync(user, model.Password, false);
                 if (result.Succeeded) {
                     string token = GetToken(user);
-                    return Created("", token);
+                    return Created("", new { token, visitor });
                 }
             }
             return BadRequest();
@@ -86,6 +87,18 @@ namespace DigitizedApi.Controllers {
                 return Created("", token);
             }
             return BadRequest();
+        }
+
+        /// <summary>
+        /// Checks if the user already exists or not
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns>A boolean to see if the user is already registered</returns>
+        [AllowAnonymous]
+        [HttpGet("CheckUsername")]
+        public async Task<ActionResult<Boolean>> CheckAvailableUserName(string email) {
+            var user = await _userManager.FindByNameAsync(email);
+            return user == null;
         }
     }
 }

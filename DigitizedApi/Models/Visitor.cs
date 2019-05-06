@@ -56,7 +56,7 @@ namespace DigitizedApi.Models {
             }
         }
 
-        public string Telephone {
+        public string PhoneNumber {
             get {
                 return _telephone;
             }
@@ -76,18 +76,24 @@ namespace DigitizedApi.Models {
 
         public string Country { get; set; }
 
-        public ICollection<LikedImage> Liked { get; private set; }
-        public IEnumerable<MyImage> LikedImages => Liked.Select(i => i.Image);
-        public IEnumerable<Comment> Comments { get; set; }
+        //public ICollection<LikedImage> Liked { get; private set; }
+        //public IEnumerable<MyImage> LikedImages => Liked.Select(i => i.Image);
+        public ICollection<Comment> Comments { get; set; }
         #endregion
 
         #region Constructor
-        public Visitor(string firstName, string lastName, string email, string telephone, string country = null) {
+        public Visitor(string firstName, string lastName, string email, string phoneNumber, string country = null) {
             FirstName = firstName;
             LastName = lastName;
             Email = email;
-            Telephone = telephone;
+            PhoneNumber = phoneNumber;
             Country = country;
+        }
+        #endregion
+
+        #region Methods
+        public void AddComment(Comment comment) {
+            Comments.Add(comment);
         }
         #endregion
     }

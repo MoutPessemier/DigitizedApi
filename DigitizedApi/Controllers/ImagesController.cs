@@ -94,6 +94,11 @@ namespace DigitizedApi.Controllers {
             if (image == null) {
                 return NotFound();
             }
+            Visitor visitor = _visitorRepository.GetById(User.Identity.Name);
+            if(visitor == null) {
+                return NotFound();
+            }
+            visitor.AddComment(comment);
             image.AddComment(comment);
             _imageRepository.SaveChanges();
             return CreatedAtAction(nameof(GetComment), new { id = comment.Id }, comment);
@@ -115,7 +120,6 @@ namespace DigitizedApi.Controllers {
             if(image == null) {
                 return BadRequest();
             }
-            //image.Comments.Update(comment);
             _commentRepository.Update(comment);
             _commentRepository.SaveChanges();
             return CreatedAtAction(nameof(GetComment), new { id = comment.Id }, comment);
@@ -134,7 +138,12 @@ namespace DigitizedApi.Controllers {
             if(comment == null || image == null) {
                 return NotFound();
             }
+            Visitor visitor = _visitorRepository.GetById(User.Identity.Name);
+            if(visitor == null) {
+                return NotFound();
+            }
             image.Comments.Remove(comment);
+            visitor.Comments.Remove(comment);
             _commentRepository.Delete(comment);
             _commentRepository.SaveChanges();
             return comment;
