@@ -45,7 +45,8 @@ namespace DigitizedApi.Controllers {
                 var result = await _singInManager.CheckPasswordSignInAsync(user, model.Password, false);
                 if (result.Succeeded) {
                     string token = GetToken(user);
-                    return Created("", new { token, visitor });
+                    //return Created("", new { token, visitor });
+                    return Created("", token);
                 }
             }
             return BadRequest();
@@ -84,6 +85,7 @@ namespace DigitizedApi.Controllers {
                 _visitorRepository.AddVisitor(visitor);
                 _visitorRepository.SaveChanges();
                 string token = GetToken(user);
+                //return Created("", new { token, visitor });
                 return Created("", token);
             }
             return BadRequest();
@@ -99,6 +101,12 @@ namespace DigitizedApi.Controllers {
         public async Task<ActionResult<Boolean>> CheckAvailableUserName(string email) {
             var user = await _userManager.FindByNameAsync(email);
             return user == null;
+        }
+
+        [AllowAnonymous]
+        [HttpGet("{email}")]
+        public ActionResult<Visitor> GetVisitorByEmail(string email) {
+            return _visitorRepository.GetById(email);
         }
     }
 }

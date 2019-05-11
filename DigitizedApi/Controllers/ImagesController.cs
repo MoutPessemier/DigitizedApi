@@ -101,7 +101,7 @@ namespace DigitizedApi.Controllers {
             visitor.AddComment(comment);
             image.AddComment(comment);
             _imageRepository.SaveChanges();
-            return CreatedAtAction(nameof(GetComment), new { id = comment.Id }, comment);
+            return CreatedAtAction(nameof(GetComment), new { id = id, commentId = comment.Id }, comment);
         }
 
         /// <summary>
