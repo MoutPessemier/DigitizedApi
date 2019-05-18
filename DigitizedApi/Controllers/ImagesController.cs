@@ -95,7 +95,7 @@ namespace DigitizedApi.Controllers {
                 return NotFound();
             }
             Visitor visitor = _visitorRepository.GetById(User.Identity.Name);
-            if(visitor == null) {
+            if (visitor == null) {
                 return NotFound();
             }
             visitor.AddComment(comment);
@@ -113,16 +113,16 @@ namespace DigitizedApi.Controllers {
         /// <returns>The updated comment or BadRequest</returns>
         [HttpPut("{id}/comments/{commentId}")]
         public IActionResult PutComment(int id, int commentId, Comment comment) {
-            MyImage image = _imageRepository.GetById(id);
+            MyImage image = _imageRepository.GetByIdNoTracking(id);
             if (comment.Id != commentId) {
                 return BadRequest();
             }
-            if(image == null) {
+            if (image == null) {
                 return BadRequest();
             }
             _commentRepository.Update(comment);
             _commentRepository.SaveChanges();
-            return CreatedAtAction(nameof(GetComment), new { id = comment.Id }, comment);
+            return CreatedAtAction(nameof(GetComment), new { id = id, commentId = comment.Id }, comment);
         }
 
         /// <summary>
@@ -135,11 +135,11 @@ namespace DigitizedApi.Controllers {
         public ActionResult<Comment> DeleteComment(int id, int commentId) {
             Comment comment = _commentRepository.GetById(commentId);
             MyImage image = _imageRepository.GetById(id);
-            if(comment == null || image == null) {
+            if (comment == null || image == null) {
                 return NotFound();
             }
             Visitor visitor = _visitorRepository.GetById(User.Identity.Name);
-            if(visitor == null) {
+            if (visitor == null) {
                 return NotFound();
             }
             image.Comments.Remove(comment);

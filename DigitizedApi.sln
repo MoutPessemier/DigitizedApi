@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitizedApi", "DigitizedApi\DigitizedApi.csproj", "{E4D0CEE8-45F1-48B2-BB8F-72E86A7C39A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitizedApiTest", "DigitizedApiTest\DigitizedApiTest.csproj", "{B651DDD6-7091-4C96-9FE3-01E4F44099FB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{E4D0CEE8-45F1-48B2-BB8F-72E86A7C39A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4D0CEE8-45F1-48B2-BB8F-72E86A7C39A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4D0CEE8-45F1-48B2-BB8F-72E86A7C39A0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B651DDD6-7091-4C96-9FE3-01E4F44099FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B651DDD6-7091-4C96-9FE3-01E4F44099FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B651DDD6-7091-4C96-9FE3-01E4F44099FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B651DDD6-7091-4C96-9FE3-01E4F44099FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

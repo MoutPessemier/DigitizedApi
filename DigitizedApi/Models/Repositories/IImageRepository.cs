@@ -7,5 +7,6 @@ namespace DigitizedApi.Models.Repositories {
         void Add(MyImage image);
         void SaveChanges();
         IEnumerable<Comment> GetComments(int id);
+        MyImage GetByIdNoTracking(int id);
     }
 }

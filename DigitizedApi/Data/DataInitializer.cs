@@ -23,12 +23,6 @@ namespace DigitizedApi.Data {
             _commentRepository = commentRepository;
         }
 
-        //public async Task InitializeData() {
-        //    _dbContext.Database.EnsureDeleted();
-        //    if (_dbContext.Database.EnsureCreated()) {
-        //    }
-        //}
-
         public async Task InitializeDataAsync() {
             _dbContext.Database.EnsureDeleted();
             if (_dbContext.Database.EnsureCreated()) {
@@ -94,6 +88,8 @@ namespace DigitizedApi.Data {
                 MyVideo video3 = new MyVideo("https://www.youtube.com/watch?v=Yeq9vAr037U");
                 _videoRepository.Add(video3);
 
+                _videoRepository.SaveChanges();
+
                 Visitor visitor1 = new Visitor("Mout", "Pessemier", "moutpessemier@hotmail.com", "0032479123378", "Belgium");
                 await CreateUser(visitor1.Email, "P@ssword1");
                 _visitorRepository.AddVisitor(visitor1);
@@ -130,7 +126,7 @@ namespace DigitizedApi.Data {
                 await CreateUser(visitor9.Email, "P@ssword1");
                 _visitorRepository.AddVisitor(visitor9);
 
-                _videoRepository.SaveChanges();
+                _visitorRepository.SaveChanges();
 
                 Comment comment1 = new Comment() { Author = "Mout Pessemier", Content = "Damn son, nice work!", MyImageId = 2, VisitorId = 1 };
                 Comment comment2 = new Comment() { Author = "Tom Clarys", Content = "It's a very nice", MyImageId = 2, VisitorId = 4 };

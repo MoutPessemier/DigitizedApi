@@ -27,6 +27,10 @@ namespace DigitizedApi.Data.Repositories {
             return _images.Include(i => i.Comments).SingleOrDefault(i => i.Id == id);
         }
 
+        public MyImage GetByIdNoTracking(int id) {
+            return _images.AsNoTracking().Include(i => i.Comments).SingleOrDefault(i => i.Id == id);
+        }
+
         public IEnumerable<Comment> GetComments(int id) {
             return _images.Include(i => i.Comments).FirstOrDefault(i => i.Id == id).Comments.OrderBy(c => c.Date).ToList();
         }

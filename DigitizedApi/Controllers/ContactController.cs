@@ -25,11 +25,7 @@ namespace DigitizedApi.Controllers {
         /// <param name="contactMessage"></param>
         /// <returns>true or false, depending on the success of the sent mail</returns>
         [HttpPost]
-        public Task<bool> Send(ContactMessage contactMessage) {
-            return SendMail(contactMessage);
-        }
-
-        private async Task<bool> SendMail(ContactMessage contactMessage) {
+        public async Task<bool> SendMail(ContactMessage contactMessage) {
             MailAddress from = new MailAddress(Configuration["Mail:From"]);
             MailAddress to = new MailAddress(Configuration["Mail:To"]);
             MailMessage mail = new MailMessage(from, to);
