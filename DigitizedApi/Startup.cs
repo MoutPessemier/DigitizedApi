@@ -83,7 +83,6 @@ namespace DigitizedApi {
                 };
             });
 
-            //change later to the origen of my site
             services.AddCors(options =>
                 options.AddPolicy("AllowAllOrigins", builder => builder.AllowAnyOrigin()
             ));

@@ -152,50 +152,6 @@ namespace DigitizedApi.Controllers {
 }
 
 ///// <summary>
-///// Adds an image
-///// </summary>
-///// <param name="img"></param>
-///// <returns>The added image</returns>
-//[HttpPost]
-//public ActionResult<MyImage> PostImage(MyImage img) {
-//    _imageRepository.Add(img);
-//    _imageRepository.SaveChanges();
-//    return CreatedAtAction(nameof(GetImage), new { id = img.Id }, img);
-//}
-
-///// <summary>
-///// Modifies an image
-///// </summary>
-///// <param name="id"></param>
-///// <param name="img"></param>
-///// <returns>The modified image</returns>
-//[HttpPut("{id}")]
-//public IActionResult PutImage(int id, MyImage img) {
-//    if (id != img.Id) {
-//        return BadRequest();
-//    }
-//    _imageRepository.Update(img);
-//    _imageRepository.SaveChanges();
-//    return CreatedAtAction(nameof(GetImage), new { id = img.Id }, img);
-//}
-
-///// <summary>
-///// Deletes an image
-///// </summary>
-///// <param name="id"></param>
-///// <returns>The deleted image</returns>
-//[HttpDelete("{id}")]
-//public ActionResult<MyImage> DeleteImage(int id) {
-//    MyImage image = _imageRepository.GetById(id);
-//    if (image == null) {
-//        return NotFound();
-//    }
-//    _imageRepository.Delete(image);
-//    _imageRepository.SaveChanges();
-//    return image;
-//}
-
-///// <summary>
 ///// Gets the liked images from the logged in visitor
 ///// </summary>
 ///// <returns></returns>

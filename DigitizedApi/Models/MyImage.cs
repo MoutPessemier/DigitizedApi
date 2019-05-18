@@ -104,16 +104,16 @@ namespace DigitizedApi.Models {
             Comments = new List<Comment>();
         }
 
-        public MyImage(string name, string iso, string shutter, string fnumber, string country, string path, int likes) {
-            Name = name;
-            ISO = iso;
-            ShutterSpeed = shutter;
-            Aperture = fnumber;
-            Country = country;
-            Path = path;
-            Likes = likes;
-            Comments = new List<Comment>();
-        }
+        //public MyImage(string name, string iso, string shutter, string fnumber, string country, string path, int likes) {
+        //    Name = name;
+        //    ISO = iso;
+        //    ShutterSpeed = shutter;
+        //    Aperture = fnumber;
+        //    Country = country;
+        //    Path = path;
+        //    Likes = likes;
+        //    Comments = new List<Comment>();
+        //}
         #endregion
 
         #region Methods
