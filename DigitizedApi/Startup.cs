@@ -108,7 +108,7 @@ namespace DigitizedApi {
 
             app.UseCors("AllowAllOrigins");
 
-            dataInitializer.InitializeDataAsync().Wait();
+            //dataInitializer.InitializeDataAsync().Wait();
         }
     }
 }
