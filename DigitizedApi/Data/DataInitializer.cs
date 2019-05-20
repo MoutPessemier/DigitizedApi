@@ -27,34 +27,34 @@ namespace DigitizedApi.Data {
             _dbContext.Database.EnsureDeleted();
             if (_dbContext.Database.EnsureCreated()) {
 
-                MyImage image1 = new MyImage("Header", "ISO-200", "1/80 sec", "f/5.6", "Belgium", "../../../assets/images/IMG_9157c.jpg", 5);
+                MyImage image1 = new MyImage("Header", "ISO-200", "1/80 sec", "f/5.6", "Belgium", "../../../assets/images/IMG_9157c.jpg");
                 _imageRepository.Add(image1);
 
-                MyImage image2 = new MyImage("DisplayPic1", "ISO-100", "1/200 sec", "f/10", "Italy", "../../../assets/images/DSC_2544c2.jpg", 15000);
+                MyImage image2 = new MyImage("DisplayPic1", "ISO-100", "1/200 sec", "f/10", "Italy", "../../../assets/images/DSC_2544c2.jpg");
                 _imageRepository.Add(image2);
 
-                MyImage image3 = new MyImage("DisplayPic2", "ISO-100", "1/320 sec", "f/5.6", "Italy", "../../../assets/images/DSC_2648c3.jpg", 123546641);
+                MyImage image3 = new MyImage("DisplayPic2", "ISO-100", "1/320 sec", "f/5.6", "Italy", "../../../assets/images/DSC_2648c3.jpg");
                 _imageRepository.Add(image3);
 
-                MyImage image4 = new MyImage("DisplayPic3", "ISO-500", "6 sec", "f/4.5", "Italy", "../../../assets/images/DSC_3043c2.jpg", 55);
+                MyImage image4 = new MyImage("DisplayPic3", "ISO-500", "6 sec", "f/4.5", "Italy", "../../../assets/images/DSC_3043c2.jpg");
                 _imageRepository.Add(image4);
 
-                MyImage image5 = new MyImage("DisplayPic4", "ISO-100", "1/1600 sec", "f/5.6", "Italy", "../../../assets/images/DSC_2639c.jpg", 55);
+                MyImage image5 = new MyImage("DisplayPic4", "ISO-100", "1/1600 sec", "f/5.6", "Italy", "../../../assets/images/DSC_2639c.jpg");
                 _imageRepository.Add(image5);
                 
-                MyImage image6 = new MyImage("DisplayPic5", "ISO-100", "1/125 sec", "f/9", "Italy", "../../../assets/images/DSC_2682c2.jpg", 1500);
+                MyImage image6 = new MyImage("DisplayPic5", "ISO-100", "1/125 sec", "f/9", "Italy", "../../../assets/images/DSC_2682c2.jpg");
                 _imageRepository.Add(image6);
 
-                MyImage image7 = new MyImage("DisplayPic6", "ISO-640", "1/800 sec", "f/4.5", "Belgium", "../../../assets/images/DSC_3698c3.jpg", 9320);
+                MyImage image7 = new MyImage("DisplayPic6", "ISO-640", "1/800 sec", "f/4.5", "Belgium", "../../../assets/images/DSC_3698c3.jpg");
                 _imageRepository.Add(image7);
 
-                MyImage image8 = new MyImage("DisplayPic7", "ISO-1250", "1/500 sec", "f/16", "Netherlands", "../../../assets/images/DSC_5088c.jpg", 666);
+                MyImage image8 = new MyImage("DisplayPic7", "ISO-1250", "1/500 sec", "f/16", "Netherlands", "../../../assets/images/DSC_5088c.jpg");
                 _imageRepository.Add(image8);
 
-                MyImage image9 = new MyImage("DisplayPic8", "ISO-2500", "1/40 sec", "f/4.5", "Belgium", "../../../assets/images/DSC_5340.jpg", 1);
+                MyImage image9 = new MyImage("DisplayPic8", "ISO-2500", "1/40 sec", "f/4.5", "Belgium", "../../../assets/images/DSC_5340.jpg");
                 _imageRepository.Add(image9);
 
-                MyImage image10 = new MyImage("DisplayPic9", "ISO-6400", "1/1000 sec", "f/13", "France", "../../../assets/images/DSC_5471c2.jpg", 12345);
+                MyImage image10 = new MyImage("DisplayPic9", "ISO-6400", "1/1000 sec", "f/13", "France", "../../../assets/images/DSC_5471c2.jpg");
                 _imageRepository.Add(image10);
 
                 _imageRepository.SaveChanges();
