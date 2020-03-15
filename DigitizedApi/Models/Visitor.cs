@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace DigitizedApi.Models {
+namespace DigitizedApi.Models
+{
     public class Visitor {
 
         #region Fields
@@ -75,9 +75,6 @@ namespace DigitizedApi.Models {
         }
 
         public string Country { get; set; }
-
-        //public ICollection<LikedImage> Liked { get; private set; }
-        //public IEnumerable<MyImage> LikedImages => Liked.Select(i => i.Image);
         public ICollection<Comment> Comments { get; set; }
         #endregion
 

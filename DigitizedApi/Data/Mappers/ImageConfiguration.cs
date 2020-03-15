@@ -17,9 +17,6 @@ namespace DigitizedApi.Data.Mappers {
                 .HasMaxLength(84)
                 .IsRequired(true);
 
-            //builder.Property(i => i.Content)
-            //    .IsRequired(true);
-
             builder.Property(i => i.Path)
                 .IsRequired(true);
 

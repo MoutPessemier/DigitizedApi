@@ -1,10 +1,6 @@
 ﻿using DigitizedApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DigitizedApi.Data.Mappers {
     public class VisitorConfiguration : IEntityTypeConfiguration<Visitor> {
@@ -28,8 +24,6 @@ namespace DigitizedApi.Data.Mappers {
             builder.Property(v => v.PhoneNumber)
                 .HasMaxLength(15)
                 .IsRequired(true);
-
-            //builder.Ignore(v => v.LikedImages);
 
             builder.HasMany(c => c.Comments)
                 .WithOne()

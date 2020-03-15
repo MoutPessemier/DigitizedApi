@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DigitizedApi.Models {
+namespace DigitizedApi.Models
+{
     public class MyImage {
 
         #region Fields
@@ -30,68 +28,19 @@ namespace DigitizedApi.Models {
                 _name = value;
             }
         }
-        //public string ExposureTime { get; set; }
         public string ISO { get; set; }
         public string ShutterSpeed { get; set; }
         public string Aperture { get; set; }
         public string Country { get; set; }
-        //public string Content { get; set; }
         public string Path { get; set; }
         public int Likes { get; set; }
         public ICollection<Comment> Comments { get; set; }
         #endregion
 
         #region Constructor
-        //public MyImage(string name, int iso, double shutterspeed, double aperture, string country, string content) {
-        //    Name = name;
-        //    ISO = iso;
-        //    ShutterSpeed = shutterspeed;
-        //    Aperture = aperture;
-        //    Country = country;
-        //    Content = content;
-
-        //}
-
         public MyImage() {
 
         }
-
-        //public MyImage(string name, string country, Image image) {
-        //    Name = name;
-        //    //ExposureTime = Convert.ToInt64(Encoding.UTF8.GetString(image.GetPropertyItem(0x829A).Value));
-        //    //ISO = Convert.ToInt64(Encoding.UTF8.GetString(image.GetPropertyItem(0x8827).Value));
-        //    //ShutterSpeed = Convert.ToInt64(Encoding.UTF8.GetString(image.GetPropertyItem(0x9201).Value));
-        //    //Aperture = Convert.ToInt64(Encoding.UTF8.GetString(image.GetPropertyItem(0x829D).Value));
-
-        //    //ExposureTime = Encoding.UTF8.GetString(image.GetPropertyItem(0x829A).Value);
-        //    //ISO = Encoding.UTF8.GetString(image.GetPropertyItem(0x8827).Value);
-        //    //ShutterSpeed = Encoding.UTF8.GetString(image.GetPropertyItem(0x9201).Value);
-        //    //Aperture = Encoding.UTF8.GetString(image.GetPropertyItem(0x829D).Value);
-        //    Country = country;
-        //    Content = ConvertImage(image);
-        //}
-
-        //public MyImage(string name, string iso, string shutter, string fnumber, string country, Image image) {
-        //    Name = name;
-        //    ISO = iso;
-        //    ShutterSpeed = shutter;
-        //    Aperture = fnumber;
-        //    Country = country;
-        //    Content = ConvertImage(image);
-        //    Likes = 0;
-        //    Comments = new List<Comment>();
-        //}
-
-        //public MyImage(string name, string iso, string shutter, string fnumber, string country, Image image, int likes) {
-        //    Name = name;
-        //    ISO = iso;
-        //    ShutterSpeed = shutter;
-        //    Aperture = fnumber;
-        //    Country = country;
-        //    Content = ConvertImage(image);
-        //    Likes = likes;
-        //    Comments = new List<Comment>();
-        //}
 
         public MyImage(string name, string iso, string shutter, string fnumber, string country, string path) {
             Name = name;
@@ -103,17 +52,6 @@ namespace DigitizedApi.Models {
             Likes = 0;
             Comments = new List<Comment>();
         }
-
-        //public MyImage(string name, string iso, string shutter, string fnumber, string country, string path, int likes) {
-        //    Name = name;
-        //    ISO = iso;
-        //    ShutterSpeed = shutter;
-        //    Aperture = fnumber;
-        //    Country = country;
-        //    Path = path;
-        //    Likes = likes;
-        //    Comments = new List<Comment>();
-        //}
         #endregion
 
         #region Methods
@@ -129,11 +67,6 @@ namespace DigitizedApi.Models {
             }
             return Convert.ToBase64String(Ret);
         }
-
-        //private double CalcFNumber(double apex) {
-        //    //return Math.Round(Math.Pow(2, apex / 2), 1);
-        //    return Math.Pow(2, apex / 2);
-        //}
 
         public void AddComment(Comment comment) => Comments.Add(comment);
         public Comment GetComment(int id) => Comments.FirstOrDefault(c => c.Id == id);

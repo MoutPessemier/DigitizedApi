@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using DigitizedApi.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System.Linq;
 
-namespace DigitizedApi.Controllers {
+namespace DigitizedApi.Controllers
+{
     [Route("api/[controller]")]
     [ApiConventionType(typeof(DefaultApiConventions))]
     [Produces("application/json")]
@@ -150,13 +150,3 @@ namespace DigitizedApi.Controllers {
         }
     }
 }
-
-///// <summary>
-///// Gets the liked images from the logged in visitor
-///// </summary>
-///// <returns></returns>
-//[HttpGet("Liked")]
-//public IEnumerable<MyImage> GetLiked() {
-//    Visitor visitor = _visitorRepository.GetBy(User.Identity.Name);
-//    return visitor.LikedImages;
-//}

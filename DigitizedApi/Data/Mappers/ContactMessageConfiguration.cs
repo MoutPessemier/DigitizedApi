@@ -1,10 +1,6 @@
 ﻿using DigitizedApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DigitizedApi.Data.Mappers {
     public class ContactMessageConfiguration : IEntityTypeConfiguration<ContactMessage> {

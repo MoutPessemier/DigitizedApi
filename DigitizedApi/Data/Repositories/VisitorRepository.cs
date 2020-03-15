@@ -25,7 +25,6 @@ namespace DigitizedApi.Data.Repositories {
 
         public Visitor GetById(string email) {
             return _visitors
-                //.Include(v => v.Liked).ThenInclude(v => v.Image)
                 .Include(v => v.Comments).SingleOrDefault(v => v.Email == email);
         }
 
